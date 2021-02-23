@@ -48,7 +48,7 @@ class Oauth
     {   
         //获取头部信息
         try {
-            $authorization = Request::header('authentication');   //获取请求中的authentication字段，值形式为USERID asdsajh..这种形式
+            $authorization = Request::header('authorization');   //获取请求中的authorization字段，值形式为USERID asdsajh..这种形式
             $authorization = explode(" ", $authorization);        //explode分割，获取后面一窜base64加密数据
             $authorizationInfo  = explode(":", base64_decode($authorization[1]));  //对base_64解密，获取到用:拼接的自字符串，然后分割，可获取appid、accesstoken、uid这三个参数
             $clientInfo['uid'] = $authorizationInfo[2];
@@ -106,7 +106,7 @@ class Oauth
      * 生成签名
      * _字符开头的变量不参与签名
      */
-    public static function makeSign ($data = [],$app_secret = '')
+    public static function makeSign($data = [],$app_secret = '')
     {   
         unset($data['version']);
         unset($data['sign']);

@@ -17,7 +17,7 @@ class User extends Api
      * 所有方法都不需要鉴权
      * [*]
      */
-    protected $noAuth = [];
+    protected $noAuth = ['create'];
     
     /**
      * 显示资源列表
@@ -30,7 +30,7 @@ class User extends Api
         ValidataCommon::validateCheck(['lng' => 'require', 'lat' => 'require'], $this->request->param('')); //参数验证
         //通用分页
         list($page, $size) = Page::getPage($this->request->param(''));
-        dump($this->uid);
+        echo($this->uid);
     }
 
     /**
@@ -98,12 +98,5 @@ class User extends Api
     public function delete($id)
     {
         echo "delete";
-    }
-
-
-    public function address($id)
-    {
-        echo "address-";
-        echo $id;
     }
 }
